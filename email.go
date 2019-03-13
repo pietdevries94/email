@@ -479,12 +479,7 @@ func (e *Email) SendWithTLS(addr string, a smtp.Auth, t *tls.Config) error {
 		return err
 	}
 
-	conn, err := tls.Dial("tcp", addr, t)
-	if err != nil {
-		return err
-	}
-
-	c, err := smtp.NewClient(conn, t.ServerName)
+	c, err := smtp.Dial(addr)
 	if err != nil {
 		return err
 	}
